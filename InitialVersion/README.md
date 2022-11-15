@@ -2,7 +2,7 @@
 
 [Sonargraph](https://www.hello2morrow.com/products/sonargraph) shows the cycles between packages `bill <-> financial` and `bill <-> audit` (green half circle on the right) that are in this 'InitialVersion'.
 
-![](images/sonargraph-folded.png)
+![](images/sonargraph-collapsed.png)
 
 Other dependencys are fine:
 * `ui` is top package that uses/sees other (lower) package `bill`

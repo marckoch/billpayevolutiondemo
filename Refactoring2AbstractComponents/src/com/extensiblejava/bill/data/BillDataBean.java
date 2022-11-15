@@ -1,10 +1,10 @@
 package com.extensiblejava.bill.data;
 
-import java.math.*;
+import java.math.BigDecimal;
 
 public class BillDataBean {
-	private Integer billId;
-	private Integer custId;
+	private final Integer billId;
+	private final Integer custId;
 	private String name;
 	private BigDecimal amount;
 	private BigDecimal auditedAmount;

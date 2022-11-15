@@ -1,21 +1,24 @@
 package com.extensiblejava.bill.data;
 
-import java.math.*;
-import java.util.*;
+import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.TreeMap;
 
 public class BillDb {
 
-	private static CustomerDataBean custBean;
-	private static TreeMap billBeans;
+	private static final CustomerDataBean custBean;
+	private static final TreeMap<Integer, BillDataBean> billBeans;
 
 	static {
-		custBean = new CustomerDataBean(new Integer(1), "Sue", "Smith");
-		BillDataBean billBean1 = new BillDataBean(new Integer(1), new Integer(1), "ONE", new BigDecimal("25.00"), null, null);
-		BillDataBean billBean2 = new BillDataBean(new Integer(2), new Integer(1), "TWO", new BigDecimal("50.00"), null, null);
-		BillDataBean billBean3 = new BillDataBean(new Integer(3), new Integer(1), "THREE", new BigDecimal("75.00"), null, null);
-		BillDataBean billBean4 = new BillDataBean(new Integer(4), new Integer(1), "FOUR", new BigDecimal("100.00"), null, null);
-		BillDataBean billBean5 = new BillDataBean(new Integer(5), new Integer(1), "FIVE", new BigDecimal("1000.00"), null, null);
-		billBeans = new TreeMap();
+		custBean = new CustomerDataBean(1, "Sue", "Smith");
+
+		BillDataBean billBean1 = new BillDataBean(1, 1, "ONE", new BigDecimal("25.00"), null, null);
+		BillDataBean billBean2 = new BillDataBean(2, 1, "TWO", new BigDecimal("50.00"), null, null);
+		BillDataBean billBean3 = new BillDataBean(3, 1, "THREE", new BigDecimal("75.00"), null, null);
+		BillDataBean billBean4 = new BillDataBean(4, 1, "FOUR", new BigDecimal("100.00"), null, null);
+		BillDataBean billBean5 = new BillDataBean(5, 1, "FIVE", new BigDecimal("1000.00"), null, null);
+
+		billBeans = new TreeMap<>();
 		billBeans.put(billBean1.getBillId(), billBean1);
 		billBeans.put(billBean2.getBillId(), billBean2);
 		billBeans.put(billBean3.getBillId(), billBean3);
@@ -27,12 +30,12 @@ public class BillDb {
 		return custBean;
 	}
 
-	public static Collection getBills(Integer custId) {
+	public static Collection<BillDataBean> getBills(Integer custId) {
 		return billBeans.values();
 	}
 
 	public static BillDataBean getBill(Integer billId) {
-		return (BillDataBean) billBeans.get(billId);
+		return billBeans.get(billId);
 	}
 
 	public static void update(BillDataBean bean) {

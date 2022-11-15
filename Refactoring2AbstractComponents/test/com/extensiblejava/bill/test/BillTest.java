@@ -1,76 +1,58 @@
 package com.extensiblejava.bill.test;
 
-import java.util.*;
-import junit.framework.*;
-import junit.textui.*;
-import com.extensiblejava.bill.*;
-import com.extensiblejava.audit.*;
-import com.extensiblejava.bill.data.*;
-import java.math.*;
+import com.extensiblejava.audit.AuditFacade1;
+import com.extensiblejava.bill.Bill;
+import com.extensiblejava.bill.BillEntityLoader;
+import com.extensiblejava.bill.Customer;
+import com.extensiblejava.bill.DefaultCustomerEntityLoader;
+import com.extensiblejava.bill.data.BillDataBean;
+import junit.framework.TestCase;
 
-public class BillTest extends TestCase
-{
-	public static void main(String[] args)
-	{
-		String[] testCaseName = { BillTest.class.getName() };
+import java.math.BigDecimal;
 
-		junit.textui.TestRunner.main(testCaseName);
-	}
+public class BillTest extends TestCase {
 
-	protected void setUp() {
+    final BillDataBean billDataBean1 = new BillDataBean(1, 1, "ONE", new BigDecimal("25.00"), null, null);
 
-	}
+    final BillEntityLoader loaderForBillDataBean1 = () -> new Bill(billDataBean1);
 
-	public void testCustomerLoader() {
-		Customer cust = Customer.loadCustomer(new DefaultCustomerEntityLoader(new Integer(1)));
-		assertNotNull(cust.getName());
+    public void testCustomerLoader() {
+        Customer cust = Customer.loadCustomer(new DefaultCustomerEntityLoader(1));
+        assertNotNull(cust.getName());
 
-		Iterator bills = cust.getBills().iterator();
-		while (bills.hasNext()) {
-			assertNotNull(bills.next());
-		}
-	}
+        for (Bill bill : cust.getBills()) {
+            assertNotNull(bill);
+        }
+    }
 
-	public void testBillLoader() {
-		Bill bill = Bill.loadBill(new BillEntityLoader() {
-			public Bill loadBill() {
-				return new Bill(new BillDataBean(new Integer(1), new Integer(1), "ONE", new BigDecimal("25.00"), null, null));
-			}
-		});
-		assertNotNull(bill);
-	}
+    public void testBillLoader() {
+        Bill bill = Bill.loadBill(loaderForBillDataBean1);
 
-	public void testAudit() {
-		Bill bill = Bill.loadBill(new BillEntityLoader() {
-			public Bill loadBill() {
-				return new Bill(new BillDataBean(new Integer(1), new Integer(1), "ONE", new BigDecimal("25.00"), null, null));
-			}
-		});
-		bill.audit(new AuditFacade1());
-		BigDecimal auditedAmount = bill.getAuditedAmount();
-		assertEquals(new BigDecimal("18.75"),auditedAmount);
-	}
+        assertNotNull(bill);
+    }
 
-	public void testPay() {
-		Bill bill = Bill.loadBill(new BillEntityLoader() {
-			public Bill loadBill() {
-				return new Bill(new BillDataBean(new Integer(1), new Integer(1), "ONE", new BigDecimal("25.00"), null, null));
-			}
-		});
-		bill.pay();
-		assertEquals(bill.getPaidAmount(), bill.getAmount());
-	}
+    public void testAudit() {
+        Bill bill = Bill.loadBill(loaderForBillDataBean1);
+        bill.audit(new AuditFacade1());
+        BigDecimal auditedAmount = bill.getAuditedAmount();
 
-	public void testAuditAfterPay() {
-		Bill bill = Bill.loadBill(new BillEntityLoader() {
-			public Bill loadBill() {
-				return new Bill(new BillDataBean(new Integer(1), new Integer(1), "ONE", new BigDecimal("25.00"), null, null));
-			}
-		});
-		bill.pay();
-		BigDecimal paidAmount = bill.getPaidAmount();
-		bill.audit(new AuditFacade1());
-		BigDecimal paidAmountAfter = bill.getPaidAmount();
-		assertEquals(paidAmount, paidAmountAfter);
-	}
+        assertEquals(new BigDecimal("18.75"), auditedAmount);
+    }
+
+    public void testPay() {
+        Bill bill = Bill.loadBill(loaderForBillDataBean1);
+        bill.pay();
+
+        assertEquals(bill.getPaidAmount(), bill.getAmount());
+    }
+
+    public void testAuditAfterPay() {
+        Bill bill = Bill.loadBill(loaderForBillDataBean1);
+        bill.pay();
+        BigDecimal paidAmount = bill.getPaidAmount();
+        bill.audit(new AuditFacade1());
+        BigDecimal paidAmountAfter = bill.getPaidAmount();
+
+        assertEquals(paidAmount, paidAmountAfter);
+    }
 }

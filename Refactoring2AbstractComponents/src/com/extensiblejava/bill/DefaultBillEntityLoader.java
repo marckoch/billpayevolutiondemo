@@ -1,10 +1,11 @@
 package com.extensiblejava.bill;
 
-import com.extensiblejava.bill.data.*;
+import com.extensiblejava.bill.data.BillDataBean;
+import com.extensiblejava.bill.data.BillDb;
 
 public class DefaultBillEntityLoader implements BillEntityLoader {
 
-	private Integer billId;
+	private final Integer billId;
 
 	public DefaultBillEntityLoader(Integer billId) {
 		this.billId = billId;
