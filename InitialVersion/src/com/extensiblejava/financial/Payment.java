@@ -1,7 +1,8 @@
 package com.extensiblejava.financial;
 
-import com.extensiblejava.bill.*;
-import java.math.*;
+import com.extensiblejava.bill.Bill;
+
+import java.math.BigDecimal;
 
 public class Payment {
 	public BigDecimal generateDraft(Bill bill) {

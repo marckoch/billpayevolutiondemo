@@ -1,9 +1,11 @@
 package com.extensiblejava.bill.test;
 
-import java.util.*;
-import junit.framework.*;
-import junit.textui.*;
-import com.extensiblejava.bill.data.*;
+import com.extensiblejava.bill.data.BillDataBean;
+import com.extensiblejava.bill.data.BillDb;
+import com.extensiblejava.bill.data.CustomerDataBean;
+import junit.framework.TestCase;
+
+import java.util.Iterator;
 
 public class BillDbTest extends TestCase
 {
@@ -15,16 +17,16 @@ public class BillDbTest extends TestCase
 	}
 
 	public void testCustomerLoad() {
-		CustomerDataBean cust = BillDb.getCustomer(new Integer(1));
+		CustomerDataBean cust = BillDb.getCustomer(1);
 		assertEquals(cust.getId(), new Integer(1));
 	}
 
 	public void testBillsLoad() {
-		Iterator billBeans = BillDb.getBills(new Integer(1)).iterator();
+		Iterator<BillDataBean> billBeans = BillDb.getBills(1).iterator();
 
 		int i = 1;
 		while (billBeans.hasNext()) {
-			BillDataBean billBean = (BillDataBean) billBeans.next();
+			BillDataBean billBean = billBeans.next();
 			assertEquals(billBean.getBillId(), new Integer(i));
 			i++;
 		}
