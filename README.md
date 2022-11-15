@@ -12,8 +12,15 @@ see README.md files in the subfolders.
 
 ## Status
 
-* `InitialVersion` has been updated (Java 8, remove raw types, introduces typed collections, removed warnings in IntelliJ, etc.)
-other folders are still untouched
+* [x] `InitialVersion` has been updated (Java 8, remove raw types, introduces typed collections, removed warnings in IntelliJ, etc.)
+* [x] `Refactoring1PhysicalLayers` has been updated
+* [ ] `Refactoring2AbstractComponents`
+* [ ] `Refactoring3AcyclicRelationships`
+* [ ] `Refactoring4SeparateAbstractions`
+* [ ] `Refactoring5CollocateExceptions`
+* [ ] `Refactoring6IndependentDeployment`
+* [ ] `Refactoring7ImplementationFactory`
+
 * i can open and test the code in IntelliJ (with Java8), IntelliJs internal ant-plugin works fine and I can run all given ant targets
 * i have NOT tried to run/deploy the code (maybe I will try, maybe not, I just wanted to check the dependencys and cycles)
 
