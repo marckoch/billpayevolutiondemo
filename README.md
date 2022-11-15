@@ -16,3 +16,10 @@ see README.md files in the subfolders.
 other folders are still untouched
 * i can open and test the code in IntelliJ (with Java8), IntelliJs internal ant-plugin works fine and I can run all given ant targets
 * i have NOT tried to run/deploy the code (maybe I will try, maybe not, I just wanted to check the dependencys and cycles)
+
+## TODO
+
+the following points bother me, but I don't know if I want to tackle them:
+
+* migrating to maven (ANT ... urgh)
+* updating the code (uses struts 1.0 if I see correctly, JUnit 4)
