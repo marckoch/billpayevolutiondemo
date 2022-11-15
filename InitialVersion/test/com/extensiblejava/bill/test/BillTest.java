@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 public class BillTest extends TestCase {
 
-    final BillDataBean billDataBean1 =new BillDataBean(1, 1, "ONE", new BigDecimal("25.00"), null, null);
+    final BillDataBean billDataBean1 = new BillDataBean(1, 1, "ONE", new BigDecimal("25.00"), null, null);
 
     final BillEntityLoader loaderForBillDataBean1 = () -> new Bill(billDataBean1);
 

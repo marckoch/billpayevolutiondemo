@@ -67,7 +67,8 @@
   				<exclude name="web.xml"/>
   				<exclude name="lib/servlet-api.jar"/>
   			</webinf>
-   			
+
+   			<!-- NOTICE: war file contains all classes of packages (bill, financial, audit, ui) -->
   			<classes dir="${build}"/>
    		</war>
 	</target>

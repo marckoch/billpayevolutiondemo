@@ -6,8 +6,8 @@ import com.extensiblejava.bill.Customer;
 import java.util.List;
 
 public class CustomerSearchResultsBean {
-	private String name;
-	private List<Bill> bills;
+	private final String name;
+	private final List<Bill> bills;
 	public CustomerSearchResultsBean(Customer customer) {
 		this.name = customer.getName().getFullName();
 		this.bills = customer.getBills();

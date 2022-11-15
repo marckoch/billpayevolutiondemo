@@ -7,18 +7,18 @@ import junit.textui.TestRunner;
 
 public class AllTests extends TestCase {
 
-	public AllTests(String name) {
-		super(name);
-	}
+    public AllTests(String name) {
+        super(name);
+    }
 
-	public static void main(String[] args) {
-		TestRunner.run(AllTests.suite());
-	}
+    public static void main(String[] args) {
+        TestRunner.run(AllTests.suite());
+    }
 
-	public static Test suite() {
-		TestSuite packageTests = new TestSuite(AllTests.class.getName());
-		packageTests.addTestSuite(BillTest.class);
-		packageTests.addTestSuite(BillDbTest.class);
-		return packageTests;
-	}
+    public static Test suite() {
+        TestSuite packageTests = new TestSuite(AllTests.class.getName());
+        packageTests.addTestSuite(BillTest.class);
+        packageTests.addTestSuite(BillDbTest.class);
+        return packageTests;
+    }
 }
