@@ -9,58 +9,49 @@ import junit.framework.TestCase;
 
 import java.math.BigDecimal;
 
-public class BillTest extends TestCase
-{
-	public static void main(String[] args)
-	{
-		String[] testCaseName = { BillTest.class.getName() };
+public class BillTest extends TestCase {
 
-		junit.textui.TestRunner.main(testCaseName);
-	}
+    final BillDataBean billDataBean1 =new BillDataBean(1, 1, "ONE", new BigDecimal("25.00"), null, null);
 
-	protected void setUp() {
+    final BillEntityLoader loaderForBillDataBean1 = () -> new Bill(billDataBean1);
 
-	}
+    public void testCustomerLoader() {
+        Customer cust = Customer.loadCustomer(new DefaultCustomerEntityLoader(1));
+        assertNotNull(cust.getName());
 
-	static class DummyLoader implements BillEntityLoader {
-		public Bill loadBill() {
-			return new Bill(new BillDataBean(1, 1, "ONE", new BigDecimal("25.00"), null, null));
-		}
-	}
+        for (Bill bill : cust.getBills()) {
+            assertNotNull(bill);
+        }
+    }
 
-	public void testCustomerLoader() {
-		Customer cust = Customer.loadCustomer(new DefaultCustomerEntityLoader(1));
-		assertNotNull(cust.getName());
+    public void testBillLoader() {
+        Bill bill = Bill.loadBill(loaderForBillDataBean1);
 
-		for (Bill bill : cust.getBills()) {
-			assertNotNull(bill);
-		}
-	}
+        assertNotNull(bill);
+    }
 
-	public void testBillLoader() {
-		Bill bill = Bill.loadBill(new DummyLoader());
-		assertNotNull(bill);
-	}
+    public void testAudit() {
+        Bill bill = Bill.loadBill(loaderForBillDataBean1);
+        bill.audit();
+        BigDecimal auditedAmount = bill.getAuditedAmount();
 
-	public void testAudit() {
-		Bill bill = Bill.loadBill(new DummyLoader());
-		bill.audit();
-		BigDecimal auditedAmount = bill.getAuditedAmount();
-		assertEquals(new BigDecimal("18.75"),auditedAmount);
-	}
+        assertEquals(new BigDecimal("18.75"), auditedAmount);
+    }
 
-	public void testPay() {
-		Bill bill = Bill.loadBill(new DummyLoader());
-		bill.pay();
-		assertEquals(bill.getPaidAmount(), bill.getAmount());
-	}
+    public void testPay() {
+        Bill bill = Bill.loadBill(loaderForBillDataBean1);
+        bill.pay();
 
-	public void testAuditAfterPay() {
-		Bill bill = Bill.loadBill(new DummyLoader());
-		bill.pay();
-		BigDecimal paidAmount = bill.getPaidAmount();
-		bill.audit();
-		BigDecimal paidAmountAfter = bill.getPaidAmount();
-		assertEquals(paidAmount, paidAmountAfter);
-	}
+        assertEquals(bill.getPaidAmount(), bill.getAmount());
+    }
+
+    public void testAuditAfterPay() {
+        Bill bill = Bill.loadBill(loaderForBillDataBean1);
+        bill.pay();
+        BigDecimal paidAmount = bill.getPaidAmount();
+        bill.audit();
+        BigDecimal paidAmountAfter = bill.getPaidAmount();
+
+        assertEquals(paidAmount, paidAmountAfter);
+    }
 }
