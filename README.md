@@ -14,7 +14,7 @@ see README.md files in the subfolders.
 
 * [x] `InitialVersion` has been updated (Java 8, remove raw types, introduces typed collections, removed warnings in IntelliJ, etc.)
 * [x] `Refactoring1PhysicalLayers` has been updated
-* [ ] `Refactoring2AbstractComponents`
+* [x] `Refactoring2AbstractComponents`
 * [ ] `Refactoring3AcyclicRelationships`
 * [ ] `Refactoring4SeparateAbstractions`
 * [ ] `Refactoring5CollocateExceptions`

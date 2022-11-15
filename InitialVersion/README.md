@@ -42,12 +42,10 @@ Please note: All classes are bundled in one big war file
     WEB-INF/classes/com/
     WEB-INF/classes/com/extensiblejava/
     WEB-INF/classes/com/extensiblejava/audit/
+    WEB-INF/classes/com/extensiblejava/audit/AuditFacade.class
     WEB-INF/classes/com/extensiblejava/bill/          <<< all classes of package bill are included in war files classes folder
     WEB-INF/classes/com/extensiblejava/bill/data/
     WEB-INF/classes/com/extensiblejava/bill/test/
-    WEB-INF/classes/com/extensiblejava/financial/
-    WEB-INF/classes/com/extensiblejava/ui/
-    WEB-INF/classes/com/extensiblejava/audit/AuditFacade.class
     WEB-INF/classes/com/extensiblejava/bill/Bill.class
     WEB-INF/classes/com/extensiblejava/bill/BillEntityLoader.class
     WEB-INF/classes/com/extensiblejava/bill/Customer.class
@@ -61,7 +59,9 @@ Please note: All classes are bundled in one big war file
     WEB-INF/classes/com/extensiblejava/bill/test/AllTests.class
     WEB-INF/classes/com/extensiblejava/bill/test/BillDbTest.class
     WEB-INF/classes/com/extensiblejava/bill/test/BillTest.class
+    WEB-INF/classes/com/extensiblejava/financial/
     WEB-INF/classes/com/extensiblejava/financial/Payment.class
+    WEB-INF/classes/com/extensiblejava/ui/
     WEB-INF/classes/com/extensiblejava/ui/AuditAction.class
     WEB-INF/classes/com/extensiblejava/ui/BillDetailAction.class
     WEB-INF/classes/com/extensiblejava/ui/BillDetailForm.class

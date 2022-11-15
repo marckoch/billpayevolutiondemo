@@ -1,6 +1,6 @@
 # Refactorings
 
-* `AuditFacade` has been converted from class into interface, the implementation was moved to `AuditFacade1`. Because both file still reside in the same package `audit` nothing much has changed.
+* `AuditFacade` has been converted from class into interface, the implementation was moved to `AuditFacade1`. Because both files still reside in the same package `audit` nothing much has changed with the dependencys/cycles on the package level.
 * in `build.xml` all classes from `audit` package are bundled into new `audit.jar`
 
 # Dependencys
@@ -13,7 +13,7 @@
 
 # Artefact
 
-Please note: `billpay.war` now only contains the classes from `ui` package, all others are included in lib `bill.jar`
+Please note: `billpay.war` (like in previous step) only contains the classes from `ui` package, all others are included in lib `bill.jar` and new `audit.jar`
 
     ➜  git:(master) ✗ jar tf Refactoring2AbstractComponents/deploy/billpay.war
     META-INF/
@@ -33,8 +33,8 @@ Please note: `billpay.war` now only contains the classes from `ui` package, all 
     WEB-INF/struts-logic.tld
     WEB-INF/struts-template.tld
     WEB-INF/struts.tld
-    WEB-INF/lib/audit.jar       <<< notice audit.jar in WEB-INF/libs
-    WEB-INF/lib/bill.jar        <<< notice bill.jar in WEB-INF/libs
+    WEB-INF/lib/audit.jar       <<< notice audit.jar in WEB-INF/lib
+    WEB-INF/lib/bill.jar        <<< notice bill.jar in WEB-INF/lib
     WEB-INF/classes/
     WEB-INF/classes/com/
     WEB-INF/classes/com/extensiblejava/
@@ -47,35 +47,6 @@ Please note: `billpay.war` now only contains the classes from `ui` package, all 
     WEB-INF/classes/com/extensiblejava/ui/CustomerSearchResultsBean.class
     WEB-INF/classes/com/extensiblejava/ui/PayAction.class
 
-
-
-
-
-Here is the new bill.jar file. Notice it contains packages `bill`, `financial` and `audit`
-
-    ~ git:(master) ✗ jar tf Refactoring1PhysicalLayers/bin/bill.jar
-    META-INF/
-    META-INF/MANIFEST.MF
-    com/
-    com/extensiblejava/
-    com/extensiblejava/audit/
-    com/extensiblejava/bill/
-    com/extensiblejava/bill/data/
-    com/extensiblejava/financial/
-    com/extensiblejava/audit/AuditFacade.class
-    com/extensiblejava/bill/Bill.class
-    com/extensiblejava/bill/BillEntityLoader.class
-    com/extensiblejava/bill/Customer.class
-    com/extensiblejava/bill/CustomerEntityLoader.class
-    com/extensiblejava/bill/DefaultBillEntityLoader.class
-    com/extensiblejava/bill/DefaultCustomerEntityLoader.class
-    com/extensiblejava/bill/EntityLoader.class
-    com/extensiblejava/bill/Name.class
-    com/extensiblejava/bill/data/BillDataBean.class
-    com/extensiblejava/bill/data/BillDb.class
-    com/extensiblejava/bill/data/CustomerDataBean.class
-    com/extensiblejava/financial/Payment.class
-
 `bill.jar` contains `bill` and `financial`, NOT `audit` package
 
     ➜  git:(master) ✗ jar tf Refactoring2AbstractComponents/bin/bill.jar      
@@ -85,7 +56,6 @@ Here is the new bill.jar file. Notice it contains packages `bill`, `financial` a
     com/extensiblejava/
     com/extensiblejava/bill/
     com/extensiblejava/bill/data/
-    com/extensiblejava/financial/
     com/extensiblejava/bill/Bill.class
     com/extensiblejava/bill/BillEntityLoader.class
     com/extensiblejava/bill/Customer.class
@@ -97,6 +67,7 @@ Here is the new bill.jar file. Notice it contains packages `bill`, `financial` a
     com/extensiblejava/bill/data/BillDataBean.class
     com/extensiblejava/bill/data/BillDb.class
     com/extensiblejava/bill/data/CustomerDataBean.class
+    com/extensiblejava/financial/
     com/extensiblejava/financial/Payment.class
 
 we have a new `audit.jar` which contains `audit` package

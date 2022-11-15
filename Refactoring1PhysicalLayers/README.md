@@ -24,7 +24,7 @@ Please note: `billpay.war` now only contains the classes from `ui` package, all 
     WEB-INF/struts-logic.tld
     WEB-INF/struts-template.tld
     WEB-INF/struts.tld
-    WEB-INF/lib/bill.jar    <<< notice a new bill.jar in WEB-INF/libs
+    WEB-INF/lib/bill.jar    <<< notice a new bill.jar in WEB-INF/lib
     WEB-INF/classes/
     WEB-INF/classes/com/
     WEB-INF/classes/com/extensiblejava/
@@ -45,10 +45,9 @@ Here is the new bill.jar file. Notice it contains packages `bill`, `financial` a
     com/
     com/extensiblejava/
     com/extensiblejava/audit/
+    com/extensiblejava/audit/AuditFacade.class
     com/extensiblejava/bill/
     com/extensiblejava/bill/data/
-    com/extensiblejava/financial/
-    com/extensiblejava/audit/AuditFacade.class
     com/extensiblejava/bill/Bill.class
     com/extensiblejava/bill/BillEntityLoader.class
     com/extensiblejava/bill/Customer.class
@@ -60,4 +59,5 @@ Here is the new bill.jar file. Notice it contains packages `bill`, `financial` a
     com/extensiblejava/bill/data/BillDataBean.class
     com/extensiblejava/bill/data/BillDb.class
     com/extensiblejava/bill/data/CustomerDataBean.class
+    com/extensiblejava/financial/
     com/extensiblejava/financial/Payment.class
