@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface EntityLoader {
 	public Customer loadCustomer();
-	public List loadBills();
+	public List<Bill> loadBills();
 }

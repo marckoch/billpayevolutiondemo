@@ -1,13 +1,15 @@
 package com.extensiblejava.bill;
 
-import com.extensiblejava.audit.*;
-import com.extensiblejava.financial.*;
-import java.math.*;
-import com.extensiblejava.bill.data.*;
+import com.extensiblejava.audit.AuditFacade;
+import com.extensiblejava.bill.data.BillDataBean;
+import com.extensiblejava.bill.data.BillDb;
+import com.extensiblejava.financial.Payment;
+
+import java.math.BigDecimal;
 
 public class Bill {
 
-	private BillDataBean billData;
+	private final BillDataBean billData;
 
 	public static Bill loadBill(BillEntityLoader loader) {
 		return loader.loadBill();
