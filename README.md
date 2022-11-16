@@ -16,8 +16,8 @@ please check the comments "NOTICE: ..." in the build.xml files
 
 * [x] `InitialVersion` has been updated (Java 8, remove raw types, introduces typed collections, removed warnings in IntelliJ, etc.)
 * [x] `Refactoring1PhysicalLayers` has been updated
-* [x] `Refactoring2AbstractComponents`
-* [ ] `Refactoring3AcyclicRelationships`
+* [x] `Refactoring2AbstractComponents` has been updated
+* [x] `Refactoring3AcyclicRelationships` has been updated
 * [ ] `Refactoring4SeparateAbstractions`
 * [ ] `Refactoring5CollocateExceptions`
 * [ ] `Refactoring6IndependentDeployment`
