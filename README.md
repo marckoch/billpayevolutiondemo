@@ -18,7 +18,7 @@ please check the comments "NOTICE: ..." in the build.xml files
 * [x] `Refactoring1PhysicalLayers` has been updated
 * [x] `Refactoring2AbstractComponents` has been updated
 * [x] `Refactoring3AcyclicRelationships` has been updated
-* [ ] `Refactoring4SeparateAbstractions`
+* [x] `Refactoring4SeparateAbstractions` has been updated
 * [ ] `Refactoring5CollocateExceptions`
 * [ ] `Refactoring6IndependentDeployment`
 * [ ] `Refactoring7ImplementationFactory`
