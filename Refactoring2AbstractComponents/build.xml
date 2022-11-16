@@ -37,9 +37,9 @@
 	
 	<target name="dist" depends="compile">
 		<mkdir dir="${bindist}"/>
-		<!-- <jar jarfile="${bindist}/bill.jar" basedir="${build}" includes="com/extensiblejava/bill/**" excludes="com/extensiblejava/bill/test/**"/>
-		<jar jarfile="${bindist}/route.jar" basedir="${build}" includes="com/extensiblejava/route/**"/> -->
+		<!-- NOTICE: audit.jar bundles audit package -->
 		<jar jarfile="${bindist}/audit.jar" basedir="${build}" includes="com/extensiblejava/audit/**"/>
+		<!-- NOTICE: bill.jar bundles bill and financial packages, but excludes audit and ui -->
 		<jar jarfile="${bindist}/bill.jar" basedir="${build}" excludes="com/extensiblejava/bill/test/** com/extensiblejava/audit/**  com/extensiblejava/ui/**"/>
 		<jar jarfile="${bindist}/test.jar" basedir="${build}" includes="com/extensiblejava/bill/test/**"/>
 		
@@ -65,7 +65,11 @@
   				<exclude name="web.xml"/>
   				<exclude name="lib/servlet-api.jar"/>
   			</webinf>
+
+			<!-- NOTICE: war file includes bill.jar and audit.jar -->
   			<lib dir="${bindist}" excludes="test.jar"/>
+
+			<!-- NOTICE: war file only contains classes of ui package -->
   			<classes dir="${build}" includes="com/extensiblejava/ui/**"/>  			
    		</war>
 	</target>
