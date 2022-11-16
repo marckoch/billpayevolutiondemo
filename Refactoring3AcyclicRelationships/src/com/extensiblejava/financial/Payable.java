@@ -1,9 +1,8 @@
 package com.extensiblejava.financial;
 
-import java.math.*;
+import java.math.BigDecimal;
 
 public interface Payable {
-	public BigDecimal getAmount();
-	public BigDecimal getAuditedAmount();
-
+    BigDecimal getAmount();
+    BigDecimal getAuditedAmount();
 }

@@ -1,7 +1,9 @@
 package com.extensiblejava.audit.test;
 
-import junit.framework.*;
-import junit.textui.*;
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
+import junit.textui.TestRunner;
 
 public class AllTests extends TestCase {
 
@@ -9,8 +11,8 @@ public class AllTests extends TestCase {
 		super(name);
 	}
 
-	public static void main(java.lang.String[] args) {
-		junit.textui.TestRunner.run(AllTests.suite());
+	public static void main(String[] args) {
+		TestRunner.run(AllTests.suite());
 	}
 
 	public static Test suite() {

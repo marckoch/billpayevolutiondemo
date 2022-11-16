@@ -1,13 +1,28 @@
 # Refactorings
 
-* `AuditFacade` has been converted from class into interface, the implementation was moved to `AuditFacade1`. Because both files still reside in the same package `audit`, nothing much has changed with the dependencys/cycles on the package level.
+* two interfaces are introduces: `Auditable` and `Payable`, `Bill` implements both, which removes all cycles between `bill <-> financial` and `bill <-> audit` :-)
 * in `build.xml`
-  * all classes from `audit` package are bundled into `audit.jar`
-  * all classes from `bill` and `financial` package are bundled into `bill.jar`
+    * all classes from `audit` package are bundled into `audit.jar`
+    * all classes from `bill` package are bundled into `bill.jar`
+    * all classes from `financial` package are bundled into `financial.jar`
+
+# Info
+
+Running the ant target 'xmlanalyzerapp' produced this error:
+
+    Invalid byte tag in constant pool 18
+
+Looks like a Java issue, I was using Java8. Maybe this is too new? Some stackoverflow entrys suggest using Java7.
+
+Because I used Sonargraph to visualize the dependencys, I did not investigate this issue any further.
 
 # Dependencys
 
-[Sonargraph](https://www.hello2morrow.com/products/sonargraph) shows there are still cycles between packages `bill <-> financial` and `bill <-> audit` (green half circle on the right) in this refactored version.
+[Sonargraph](https://www.hello2morrow.com/products/sonargraph) shows there are no more cycles between packages `bill <-> financial` and `bill <-> audit`!
+
+we have clear dependencys now:
+* `bill` calls `audit`, `audit` does **not** call `bill` (it doesn't even know `bill` exists)
+* `bill` calls `financial`, `financial` does **not** call `bill` (it doesn't even know `bill` exists)
 
 ![](images/sonargraph-collapsed.png)
 
@@ -15,9 +30,9 @@
 
 # Artefact
 
-Please note: `billpay.war` (like in previous step) only contains the classes from `ui` package, all others are included in lib `bill.jar` and new `audit.jar`
+Please note: `billpay.war` (like in previous step) only contains the classes from `ui` package, all others are included in lib `audit.jar`, `bill.jar` and `financial.jar`
 
-    ➜  git:(master) ✗ jar tf Refactoring2AbstractComponents/deploy/billpay.war
+    ➜ git:(master) ✗ jar tf Refactoring3AcyclicRelationships/deploy/billpay.war
     META-INF/
     META-INF/MANIFEST.MF
     WEB-INF/
@@ -37,6 +52,7 @@ Please note: `billpay.war` (like in previous step) only contains the classes fro
     WEB-INF/struts.tld
     WEB-INF/lib/audit.jar       <<< notice audit.jar in WEB-INF/lib
     WEB-INF/lib/bill.jar        <<< notice bill.jar in WEB-INF/lib
+    WEB-INF/lib/financial.jar   <<< notice financial.jar in WEB-INF/lib
     WEB-INF/classes/
     WEB-INF/classes/com/
     WEB-INF/classes/com/extensiblejava/
@@ -49,9 +65,9 @@ Please note: `billpay.war` (like in previous step) only contains the classes fro
     WEB-INF/classes/com/extensiblejava/ui/CustomerSearchResultsBean.class
     WEB-INF/classes/com/extensiblejava/ui/PayAction.class
 
-`bill.jar` contains `bill` and `financial`, NOT `audit` package
+`bill.jar` contains `bill`, NOT `audit` or `financial` package
 
-    ➜  git:(master) ✗ jar tf Refactoring2AbstractComponents/bin/bill.jar      
+    ➜ git:(master) ✗ jar tf Refactoring3AcyclicRelationships/bin/bill.jar      
     META-INF/
     META-INF/MANIFEST.MF
     com/
@@ -69,12 +85,10 @@ Please note: `billpay.war` (like in previous step) only contains the classes fro
     com/extensiblejava/bill/data/BillDataBean.class
     com/extensiblejava/bill/data/BillDb.class
     com/extensiblejava/bill/data/CustomerDataBean.class
-    com/extensiblejava/financial/
-    com/extensiblejava/financial/Payment.class
 
-we have a new `audit.jar` which contains `audit` package
+we have a `audit.jar` which contains `audit` package
 
-    ➜  git:(master) jar tf Refactoring2AbstractComponents/bin/audit.jar
+    ➜ git:(master) jar tf Refactoring3AcyclicRelationships/bin/audit.jar
     META-INF/
     META-INF/MANIFEST.MF
     com/
@@ -82,3 +96,15 @@ we have a new `audit.jar` which contains `audit` package
     com/extensiblejava/audit/
     com/extensiblejava/audit/AuditFacade.class
     com/extensiblejava/audit/AuditFacade1.class
+    com/extensiblejava/audit/Auditable.class
+
+here the new `financial.jar` with the `financial` package
+
+    ➜ git:(master) ✗ jar tf Refactoring3AcyclicRelationships/bin/financial.jar
+    META-INF/
+    META-INF/MANIFEST.MF
+    com/
+    com/extensiblejava/
+    com/extensiblejava/financial/
+    com/extensiblejava/financial/Payable.class
+    com/extensiblejava/financial/Payment.class

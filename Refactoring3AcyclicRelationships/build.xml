@@ -206,6 +206,7 @@
 				<pathelement path="${buildsrc}"/>
 				<pathelement location="${bindist}/audit.jar"/>
 				<pathelement location="${bindist}/bill.jar"/>
+				<pathelement location="${bindist}/financial.jar"/>
 				<pathelement location="${lib}/struts.jar"/>
 				<pathelement location="${lib}/servlet-api.jar"/>
 			</classpath>
@@ -222,7 +223,13 @@
   				<exclude name="web.xml"/>
   				<exclude name="lib/servlet-api.jar"/>
   			</webinf>
+
+			<!-- NOTICE: war file includes bill.jar and audit.jar -->
    			<lib dir="${bindist}" excludes="billtest.jar financialtest.jar audittest.jar"/>
+
+			<!-- NOTICE: war file only contains classes of ui package (no more include here which is weird,
+			but it works because build is deleted after each step above and the last step is `ui` compilation)
+			 i don't like this -->
   			<classes dir="${build}"/>
    		</war>
    		<!-- <delete dir="${build}"/> -->
