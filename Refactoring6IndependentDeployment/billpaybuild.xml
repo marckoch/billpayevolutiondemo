@@ -23,11 +23,6 @@
 		<delete dir="${deploy}"/>
 		<delete dir="${build}"/>
 		<delete dir="${buildsrc}"/>
-		<delete file="billtest.txt"/>
-		<delete file="financialtest.txt"/>
-		<delete file="audit1test.txt"/>
-		<delete file="audit2test.txt"/>
-		<delete file="billpaytest.txt"/>
 	</target>
 	
 	<target name="init" depends="clean">
@@ -101,16 +96,18 @@
 				<pathelement path="${bindist}/audit1.jar"/>
 				<pathelement location="${buildlib}/junit.jar"/>
 			</classpath>
-			<test name="com.extensiblejava.audit1.test.AllTests" outfile="audit1test">
-				<formatter type="plain"/>
-			</test>
+			<batchtest todir="${basedir}">
+				<formatter type="plain" /> <!-- to file -->
+				<fileset dir="${build}">
+					<include name="com/extensiblejava/audit1/test/*"/>
+				</fileset>
+			</batchtest>
 		</junit>
 		<delete dir="${buildsrc}"/>
 		<delete dir="${build}"/>
 	</target>
-	
-	
-		<target name="audit2compile" depends="audit1testcompile">
+
+	<target name="audit2compile" depends="audit1testcompile">
 		<mkdir dir="${buildsrc}"/>
 		<mkdir dir="${build}"/>
 		<copy todir="${buildsrc}">
@@ -156,9 +153,12 @@
 				<pathelement path="${bindist}/audit2.jar"/>
 				<pathelement location="${buildlib}/junit.jar"/>
 			</classpath>
-			<test name="com.extensiblejava.audit2.test.AllTests" outfile="audit2test">
-				<formatter type="plain"/>
-			</test>
+			<batchtest todir="${basedir}">
+				<formatter type="plain" /> <!-- to file -->
+				<fileset dir="${build}">
+					<include name="com/extensiblejava/audit2/test/*"/>
+				</fileset>
+			</batchtest>
 		</junit>
 		<delete dir="${buildsrc}"/>
 		<delete dir="${build}"/>
@@ -207,9 +207,12 @@
 				<pathelement path="${bindist}/financial.jar"/>
 				<pathelement location="${buildlib}/junit.jar"/>
 			</classpath>
-			<test name="com.extensiblejava.financial.test.AllTests" outfile="financialtest">
-				<formatter type="plain"/>
-			</test>
+			<batchtest todir="${basedir}">
+				<formatter type="plain" /> <!-- to file -->
+				<fileset dir="${build}">
+					<include name="com/extensiblejava/financial/test/*Text.class"/>
+				</fileset>
+			</batchtest>
 		</junit>
 		<delete dir="${buildsrc}"/>
 		<delete dir="${build}"/>
@@ -273,9 +276,12 @@
 				<pathelement path="${bindist}/bill.jar"/>
 				<pathelement location="${buildlib}/junit.jar"/>
 			</classpath>
-			<test name="com.extensiblejava.bill.test.AllTests" outfile="billtest">
-				<formatter type="plain"/>
-			</test>
+			<batchtest todir="${basedir}">
+				<formatter type="plain" /> <!-- to file -->
+				<fileset dir="${build}">
+					<include name="com/extensiblejava/bill/test/*Test.class"/>
+				</fileset>
+			</batchtest>
 		</junit>
 		<delete dir="${buildsrc}"/>
 		<delete dir="${build}"/>
@@ -296,12 +302,13 @@
 			<classpath>
 				<pathelement path="${buildsrc}"/>
 				<pathelement location="${bindist}/bill.jar"/>
+				<pathelement location="${bindist}/auditspec.jar"/>
 				<pathelement location="${bindist}/financial.jar"/>
 			</classpath>
 		</javac>
 		<jar jarfile="${bindist}/billpay.jar" basedir="${build}"/>
 		<delete dir="${buildsrc}"/>
-		<delete dir="${build}"/>
+		<!--<delete dir="${build}"/>-->
 	</target>
 	
 	<target name="billpaytestcompile" depends="billpaycompile">
@@ -320,6 +327,7 @@
 			<classpath>
 				<pathelement path="${buildsrc}"/>
 				<pathelement location="${bindist}/financial.jar"/>
+				<pathelement location="${bindist}/auditspec.jar"/>
 				<pathelement location="${bindist}/bill.jar"/>
 				<pathelement location="${bindist}/billpay.jar"/>
 				<pathelement location="${buildlib}/junit.jar"/>
@@ -336,9 +344,12 @@
 				<pathelement path="${bindist}/bill.jar"/>
 				<pathelement location="${buildlib}/junit.jar"/>
 			</classpath>
-			<test name="com.extensiblejava.mediator.test.AllTests" outfile="billpaytest">
-				<formatter type="plain"/>
-			</test>
+			<batchtest todir="${basedir}">
+				<formatter type="plain" /> <!-- to file -->
+				<fileset dir="${build}">
+					<include name="com/extensiblejava/mediator/test/*Test.class"/>
+				</fileset>
+			</batchtest>
 		</junit>
 		<delete dir="${buildsrc}"/>
 		<delete dir="${build}"/>

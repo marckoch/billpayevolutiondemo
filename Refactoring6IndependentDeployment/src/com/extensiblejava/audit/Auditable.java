@@ -1,8 +1,7 @@
 package com.extensiblejava.audit;
 
-import java.math.*;
+import java.math.BigDecimal;
 
 public interface Auditable {
-	public BigDecimal getAmount();
-
+    BigDecimal getAmount();
 }

@@ -1,12 +1,16 @@
 package com.extensiblejava.bill;
 
-import com.extensiblejava.audit.*;
-import java.math.*;
-import com.extensiblejava.bill.data.*;
+import com.extensiblejava.audit.AuditException;
+import com.extensiblejava.audit.AuditFacade;
+import com.extensiblejava.audit.Auditable;
+import com.extensiblejava.bill.data.BillDataBean;
+import com.extensiblejava.bill.data.BillDb;
+
+import java.math.BigDecimal;
 
 public class Bill implements Auditable {
 
-	private BillDataBean billData;
+	private final BillDataBean billData;
 
 	public static Bill loadBill(BillEntityLoader loader) {
 		return loader.loadBill();
@@ -17,6 +21,7 @@ public class Bill implements Auditable {
 
 	public String getBillId() {	return this.billData.getBillId().toString(); }
 	public String getName() { return this.billData.getName(); }
+	@Override
 	public BigDecimal getAmount() { return this.billData.getAmount(); }
 	public BigDecimal getAuditedAmount() { return (this.billData.getAuditedAmount() == null ? null : this.billData.getAuditedAmount()); }
 	public BigDecimal getPaidAmount() { return this.billData.getPaidAmount(); }
