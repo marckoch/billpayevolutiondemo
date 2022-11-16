@@ -21,7 +21,7 @@ please check the comments "NOTICE: ..." in the build.xml files
 * [x] `Refactoring4SeparateAbstractions` has been updated
 * [x] `Refactoring5CollocateExceptions` has been updated
 * [x] `Refactoring6IndependentDeployment` has been updated
-* [ ] `Refactoring7ImplementationFactory`
+* [x] `Refactoring7ImplementationFactory` has been updated (deleted restaudit folder)
 
 * i can open and test the code in IntelliJ (with Java8), IntelliJs internal ant-plugin works fine and I can run all given ant targets
 * i have NOT tried to run/deploy the code (maybe I will try, maybe not, I just wanted to check the dependencys and cycles)
