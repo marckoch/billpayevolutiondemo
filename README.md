@@ -19,7 +19,7 @@ please check the comments "NOTICE: ..." in the build.xml files
 * [x] `Refactoring2AbstractComponents` has been updated
 * [x] `Refactoring3AcyclicRelationships` has been updated
 * [x] `Refactoring4SeparateAbstractions` has been updated
-* [ ] `Refactoring5CollocateExceptions`
+* [x] `Refactoring5CollocateExceptions` has been updated
 * [ ] `Refactoring6IndependentDeployment`
 * [ ] `Refactoring7ImplementationFactory`
 
