@@ -1,4 +1,4 @@
-junitresults.txt
+TEST-*.txt
 /billpayevolution.sonargraph/system.sonargraph
 bin
 deploy

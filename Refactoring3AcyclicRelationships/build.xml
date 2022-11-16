@@ -76,9 +76,12 @@
 				<pathelement path="${bindist}/audit.jar"/>
 				<pathelement location="${buildlib}/junit.jar"/>
 			</classpath>
-			<test name="com.extensiblejava.audit.test.AllTests" outfile="audittest">
-				<formatter type="plain"/>
-			</test>
+			<batchtest>
+				<formatter type="plain" /> <!-- to file -->
+                <fileset dir="${build}">
+                    <include name="com/extensiblejava/audit/test/*"/>
+                </fileset>
+            </batchtest>
 		</junit>
 		<delete dir="${buildsrc}"/>
 		<delete dir="${build}"/>
@@ -126,9 +129,12 @@
 				<pathelement path="${bindist}/financial.jar"/>
 				<pathelement location="${buildlib}/junit.jar"/>
 			</classpath>
-			<test name="com.extensiblejava.financial.test.AllTests" outfile="financialtest">
-				<formatter type="plain"/>
-			</test>
+			<batchtest todir="${basedir}">
+				<formatter type="plain" /> <!-- to file -->
+				<fileset dir="${build}">
+					<include name="com/extensiblejava/financial/test/*Test.class"/>
+				</fileset>
+			</batchtest>
 		</junit>
 		<delete dir="${buildsrc}"/>
 		<delete dir="${build}"/>
@@ -185,9 +191,12 @@
 				<pathelement path="${bindist}/bill.jar"/>
 				<pathelement location="${buildlib}/junit.jar"/>
 			</classpath>
-			<test name="com.extensiblejava.bill.test.AllTests" outfile="billtest">
-				<formatter type="plain"/>
-			</test>
+			<batchtest todir="${basedir}">
+				<formatter type="plain" /> <!-- to file -->
+				<fileset dir="${build}">
+					<include name="com/extensiblejava/bill/test/*"/>
+				</fileset>
+			</batchtest>
 		</junit>
 		<delete dir="${buildsrc}"/>
 		<delete dir="${build}"/>

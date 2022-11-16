@@ -45,9 +45,12 @@
 				<pathelement path="${bindist}/test.jar"/>
 				<pathelement path="${buildlib}/junit.jar"/>
 			</classpath>
-			<test name="com.extensiblejava.bill.test.AllTests" outfile="junitresults">
-				<formatter type="plain"/>
-			</test>
+			<batchtest>
+				<formatter type="plain" /> <!-- to file -->
+				<fileset dir="${build}">
+					<include name="com/extensiblejava/bill/test/*"/>
+				</fileset>
+			</batchtest>
 		</junit>
 	</target>
 	
