@@ -10,6 +10,8 @@ I used the tool "Sonargraph" to visualize the dependencys and cycles.
 
 see README.md files in the subfolders.
 
+please check the comments "NOTICE: ..." in the build.xml files
+
 ## Status
 
 * [x] `InitialVersion` has been updated (Java 8, remove raw types, introduces typed collections, removed warnings in IntelliJ, etc.)
