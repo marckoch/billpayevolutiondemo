@@ -1,4 +1,4 @@
-This is my fork of Kirk Knoernschilds Demo Repository `billpayevolutiondemo`.
+This is my fork of Kirk Knoernschilds Demo Repository `billpayevolutiondemo`. He deserves all the applause and glory.
 
 It is featured in chapter 7 of the (very good) book "Java Application Architecture" (BUY IT NOW!).
 
