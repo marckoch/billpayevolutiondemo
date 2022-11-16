@@ -25,9 +25,6 @@
 		<delete dir="${build}"/>
 		<delete dir="${buildsrc}"/>
 		<delete dir="${buildstats}"/>
-		<delete file="billtest.txt"/>
-		<delete file="financialtest.txt"/>
-		<delete file="audittest.txt"/>
 	</target>
 	
 	<target name="init" depends="clean">

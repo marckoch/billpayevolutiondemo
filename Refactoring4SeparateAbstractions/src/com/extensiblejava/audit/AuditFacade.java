@@ -1,7 +1,7 @@
 package com.extensiblejava.audit;
 
-import java.math.*;
+import java.math.BigDecimal;
 
 public interface AuditFacade {
-	public BigDecimal audit(Auditable auditable);
+	BigDecimal audit(Auditable auditable);
 }

@@ -1,27 +1,15 @@
 package com.extensiblejava.audit2.test;
 
-import java.util.*;
-import junit.framework.*;
-import junit.textui.*;
-import com.extensiblejava.audit.audit2.*;
-import com.extensiblejava.audit.*;
-import java.math.*;
+import com.extensiblejava.audit.audit2.AuditFacade2;
+import junit.framework.TestCase;
 
-public class AuditFacade2Test extends TestCase
-{
-	public static void main(String[] args)
-	{
-		String[] testCaseName = { AuditFacade2Test.class.getName() };
+import java.math.BigDecimal;
 
-		junit.textui.TestRunner.main(testCaseName);
-	}
+public class AuditFacade2Test extends TestCase {
+    public void testAudit() {
+        AuditFacade2 a1 = new AuditFacade2();
+        BigDecimal amount = a1.audit(() -> new BigDecimal("100.00"));
 
-	public void testAudit() {
-		AuditFacade2 a1 = new AuditFacade2();
-
-		BigDecimal amount = a1.audit(new Auditable() {
-			public BigDecimal getAmount() { return new BigDecimal("100.00"); };
-		});
-		assertEquals(amount, new BigDecimal("85.00"));
-	}
+        assertEquals(amount, new BigDecimal("85.00"));
+    }
 }
