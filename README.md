@@ -20,7 +20,7 @@ please check the comments "NOTICE: ..." in the build.xml files
 * [x] `Refactoring3AcyclicRelationships` has been updated
 * [x] `Refactoring4SeparateAbstractions` has been updated
 * [x] `Refactoring5CollocateExceptions` has been updated
-* [ ] `Refactoring6IndependentDeployment`
+* [x] `Refactoring6IndependentDeployment` has been updated
 * [ ] `Refactoring7ImplementationFactory`
 
 * i can open and test the code in IntelliJ (with Java8), IntelliJs internal ant-plugin works fine and I can run all given ant targets
