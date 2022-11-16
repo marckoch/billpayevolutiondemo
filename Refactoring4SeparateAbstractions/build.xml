@@ -46,7 +46,7 @@
 				<pathelement path="${buildsrc}"/>
 			</classpath>
 		</javac>
-		<!-- this only contains audit root package, not the subpackages audit1 or audit2,
+		<!-- NOTICE: this only contains audit root package, not the subpackages audit1 or audit2,
 		they were excluded 10 lines above -->
 		<jar jarfile="${bindist}/auditspec.jar" basedir="${build}" includes="com/extensiblejava/audit/**"/>
 		<delete dir="${buildsrc}"/>

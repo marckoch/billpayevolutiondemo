@@ -1,12 +1,12 @@
 package com.extensiblejava.bill;
 
-import java.util.*;
+import java.util.List;
 
 public class Customer {
-	private CustomerEntityLoader loader;
-	private Integer custId;
-	private Name name;
-	private List bills;
+	private final CustomerEntityLoader loader;
+	private final Integer custId;
+	private final Name name;
+	private List<Bill> bills;
 
 	public static Customer loadCustomer(CustomerEntityLoader loader) {
 		return loader.loadCustomer();
@@ -18,7 +18,7 @@ public class Customer {
 		this.loader = loader;
 	}
 
-	public List getBills() {
+	public List<Bill> getBills() {
 		if (this.bills == null) {
 			this.bills = loader.loadBills();
 		}
