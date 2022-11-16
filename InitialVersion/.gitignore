@@ -1,8 +1,3 @@
-TEST-*.txt
-/billpayevolution.sonargraph/system.sonargraph
-bin
-deploy
-
 # Created by https://www.toptal.com/developers/gitignore/api/maven,intellij
 # Edit at https://www.toptal.com/developers/gitignore?templates=maven,intellij
 
