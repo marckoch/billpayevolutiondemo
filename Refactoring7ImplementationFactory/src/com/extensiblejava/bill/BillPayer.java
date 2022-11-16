@@ -1,7 +1,7 @@
 package com.extensiblejava.bill;
 
-import java.math.*;
+import java.math.BigDecimal;
 
 public interface BillPayer {
-	public BigDecimal generateDraft(Bill bill);
+	BigDecimal generateDraft(Bill bill);
 }

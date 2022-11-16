@@ -1,26 +1,17 @@
 # Refactorings
 
-* now a new package `mediator` is introduced with a new class `BillPayerAdapter` which handles the dependency from `bill` to `financial`
-* in `build.xml`: `billpay.jar` contains `mediator` package
+* in package `mediator` a new class `AuditFacadeFactory` is introduced to decouple the `ui` from the creation of `AuditFacade1` instances
+* in `build.xml`: no changes
+
+# Info
+
+I did not check / clean up subfolder `restaudit`. It is not mentioned in the book, I have no idea what this is about. I deleted it. If you want to check it out, please look in original repo that I forked off of.
 
 # Dependencys
 
-we see a new package `mediator`
+we see a new `AuditFacadeFactory` in package `mediator`
 
-![](images/sonargraph-collapsed.png)
-
-if we select it we can see that it calls/uses packages `bill` and `financial`.
-If you look carefully you see that `bill` does not depend on `financial` any longer, the dependency has been moved to `mediator` package
-
-![](images/sonargraph-collapsed-mediator-selected.png)
-
-if we select `financial` we see that it is only called by `mediator`, **not** `bill` anymore
-
-![](images/sonargraph-collapsed-financial-selected.png)
-
-here we see which classes are used by `BillPayerAdapter` (follow the green half circles)
-
-![](images/sonargraph-expanded.png)
+![](images/sonargraph-auditfacadefactory-selected.png)
 
 # Artefact
 
@@ -62,7 +53,7 @@ here we see which classes are used by `BillPayerAdapter` (follow the green half 
     WEB-INF/classes/com/extensiblejava/ui/CustomerSearchResultsBean.class
     WEB-INF/classes/com/extensiblejava/ui/PayAction.class
 
-`billpay.jar` contains the `mediator` package
+`billpay.jar` contains the `mediator` package, which now also contains `AuditFacadeFactory`
 
     ➜ git:(master) ✗ jar tf Refactoring6IndependentDeployment/bin/billpay.jar
     META-INF/
@@ -70,6 +61,7 @@ here we see which classes are used by `BillPayerAdapter` (follow the green half 
     com/
     com/extensiblejava/
     com/extensiblejava/mediator/
+    com/extensiblejava/mediator/AuditFacadeFactory.class
     com/extensiblejava/mediator/BillPayerAdapter.class
 
 other jars are unchanged to previous step

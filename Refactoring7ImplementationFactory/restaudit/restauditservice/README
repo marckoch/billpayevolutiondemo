@@ -1,3 +1,0 @@
-To deploy to Heroku:
-
-heroku deploy:jar —-jar auditservice.jar —-app <heroku app>

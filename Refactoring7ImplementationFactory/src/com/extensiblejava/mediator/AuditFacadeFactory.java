@@ -1,8 +1,7 @@
 package com.extensiblejava.mediator;
 
-import com.extensiblejava.audit.audit1.*;
-//import com.extensiblejava.restaudit.*;
-import com.extensiblejava.audit.*;
+import com.extensiblejava.audit.AuditFacade;
+import com.extensiblejava.audit.audit1.AuditFacade1;
 
 //If I put this class in the same component as Bill, I've logically decoupled Bill from
 //AuditFacade implementations, but have not physically decoupled them. If I put it in the UI
@@ -12,5 +11,4 @@ public class AuditFacadeFactory {
 		return new AuditFacade1();
 		//return new RestAuditFacade();
 	}
-
 }

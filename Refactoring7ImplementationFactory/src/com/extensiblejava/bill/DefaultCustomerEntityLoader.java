@@ -1,10 +1,13 @@
 package com.extensiblejava.bill;
 
-import java.util.*;
-import com.extensiblejava.bill.data.*;
+import com.extensiblejava.bill.data.BillDb;
+import com.extensiblejava.bill.data.CustomerDataBean;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class DefaultCustomerEntityLoader implements CustomerEntityLoader {
-	private Integer custId;
+	private final Integer custId;
 
 	public DefaultCustomerEntityLoader(Integer custId) {
 		this.custId = custId;
@@ -14,15 +17,10 @@ public class DefaultCustomerEntityLoader implements CustomerEntityLoader {
 		return new Customer(this.custId, new Name(customer.getFirstName(), customer.getLastName()), this);
 	}
 
-	public List loadBills() {
-		Iterator billBeans = BillDb.getBills(this.custId).iterator();
-
-		ArrayList bills = new ArrayList();
-		while (billBeans.hasNext()) {
-			BillDataBean billBean = (BillDataBean) billBeans.next();
-			Bill b = new Bill(billBean);
-			bills.add(b);
-		}
-		return bills;
+	public List<Bill> loadBills() {
+		return BillDb.getBills(this.custId)
+				.stream()
+				.map(Bill::new)
+				.collect(Collectors.toList());
 	}
 }
